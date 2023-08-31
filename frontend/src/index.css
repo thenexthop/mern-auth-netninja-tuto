@@ -1,0 +1,151 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:opsz,wght@6..12,400;6..12,500;6..12,600;6..12,700&family=Poppins:wght@400;500;600;700&display=swap');
+
+:root {
+  --primary: #1aac83;
+  --error: #e7195a;
+  --max-width: 80rem;
+  --primary-font: "Nunito Sans";
+  --secondary-font: "Poppins";
+}
+
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
+}
+
+html {
+  font-family: var(--primary-font);
+}
+
+body {
+  background-color: #f1f1f1;
+  color: #333333;
+  line-height: 1.4;
+  margin: 0;
+  min-height: 100vh;
+}
+
+header {
+  background-color: #ffffff;
+}
+
+header .container {
+  margin: 0 auto;
+  max-width: var(--max-width);
+  padding: 10px 20px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+header a {
+  color: #333;
+  text-decoration: none;
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--secondary-font);
+  margin: 0;
+}
+
+h1 {
+  
+  font-size: 1.9rem;  
+}
+
+.pages {
+  margin: 0 auto;
+  max-width: var(--max-width);
+  padding: 20px;
+}
+
+.home {
+  display: grid;
+  grid-template-columns: 3fr 1fr;
+  gap: 100px;
+}
+
+.workout-details {
+  background-color: #ffffff;
+  border-radius: .4rem;
+  margin: 20px auto;
+  padding: 20px;
+  box-shadow: 2px 2px 5px rgba(0,0,0,.05);
+  position: relative;
+}
+
+.workout-details h4 {
+  color: var(--primary);
+  font-size: 1.2em;
+  margin: 0 0 10px 0;
+}
+
+.workout-details p {
+  color: #555555;
+  font-size: 0.9em;
+  margin: 0;
+}
+
+.workout-details span {
+  background-color: #f1f1f1;
+  border-radius: 50%;
+  color: #333333;
+  cursor: pointer;
+  font-size: 0.9em;
+  margin: 0;
+  padding: .4rem;
+  
+  position: absolute;
+  top: 20px;
+  right: 20px;
+}
+
+.form > input,
+.form > label {
+  display: block;
+}
+
+.form input {
+  border: 1px solid #ddd;
+  border-radius: .2rem;
+  font-family: inherit;
+  font-size: inherit;
+  margin: .4rem 0 1.25rem;
+  padding: .6rem;
+  width: 100%;
+
+}
+
+.form button {
+  background-color: var(--primary);
+  border: 0;
+  border-radius: .25rem;
+  color: #ffffff;
+  cursor: pointer;
+  font-family: inherit;
+  padding: .6rem;
+
+  display: block;
+  margin: 0 auto;
+}
+
+div.error {
+  background-color: #ffefef;
+  border: 1px solid var(--error);
+  border-radius: .25rem;
+  color: var(--error);
+  padding: .6rem;
+  margin: 1.25rem 0;
+}
+
+.input.error {
+  border: 1px solid var(--error);
+}
+
+.form h3 {
+  margin: 1.25rem 0;
+}
