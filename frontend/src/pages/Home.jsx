@@ -1,7 +1,8 @@
 import { useEffect } from "react";
 
-// custom hook to manage global app Context
+// custom hooks to manage global app Context
 import { useWorkoutsContext } from "../hooks/useWorkoutsContext";
+import { useAuthContext } from '../hooks/useAuthContext'
 
 // Action creators
 import { setAllWorkouts } from '../context/actions/workouts.actions';
@@ -12,10 +13,16 @@ import WorkoutForm from "../components/WorkoutForm";
 
 const Home = () => {
   const { state:{ workouts }, dispatch } = useWorkoutsContext();
-  
+  const { state:{user} } = useAuthContext();
+
   useEffect(()=>{
+    
     const fetchWorkouts = async () => {
-      const resp = await fetch("http://localhost:5400/api/workouts");
+      const resp = await fetch("http://localhost:5400/api/workouts", {
+        headers:{
+          authorization: `Bearer ${user.token}`,
+        }
+      });
       const json = await resp.json();
 
       if(resp.ok) {
@@ -27,8 +34,11 @@ const Home = () => {
       }
     }
 
-    fetchWorkouts();
-  }, []);
+    if(user) {
+      fetchWorkouts();
+    }
+
+  }, [dispatch, user]);
 
   return (
     <div className="home">

@@ -2,6 +2,7 @@ import { useState } from 'react';
 
 // Global context
 import { useWorkoutsContext } from '../hooks/useWorkoutsContext';
+import { useAuthContext } from '../hooks/useAuthContext';
 
 // Action creator
 import { createNewWorkout } from '../context/actions/workouts.actions';
@@ -13,6 +14,7 @@ export default function WorkoutForm() {
   const [error, setError] = useState(null);
   const [emptyFields, setEmptyFields] = useState([]);
   
+  const { state:{user} } = useAuthContext();
   const { dispatch } = useWorkoutsContext();
 
   async function onSubmit(e) {
@@ -26,11 +28,17 @@ export default function WorkoutForm() {
 
     const workout = {title, reps, load}
 
+    if(!user) {
+      setError("Debe iniciar sesión primero antes de realizar esta acción.");
+      return;
+    }
+
     const res = await fetch("http://localhost:5400/api/workouts", {
       method: "POST",
       body: JSON.stringify(workout),
       headers: {
         "Content-Type": "application/json",
+        authorization: `Bearer ${user.token}`,
       }
     });
 

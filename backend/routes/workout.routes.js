@@ -8,8 +8,13 @@ import {
   deleteWorkout,
   updateWorkout
  } from '../controllers/workout.controller.js';
+ 
+ // middlewares
+ import { protectRoute } from '../middlewares/protectRoute.js';
 
 const router = Router();
+
+router.use(protectRoute);
 
 // GET All
 router.get('/', getAllWorkouts);

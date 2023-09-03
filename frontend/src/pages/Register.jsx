@@ -1,11 +1,23 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
+// custom hooks
+import { useAuthContext } from "../hooks/useAuthContext";
 import { useRegisterUser } from "../hooks/useRegisterUser";
 
 export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const { registerUser, isLoading, isError } = useRegisterUser();
+
+  const {state:{user}} = useAuthContext();
+  const navigate = useNavigate();
+  
+  useEffect(() => {
+    if (user) {
+      navigate("/");
+    }
+  }, [user, navigate]);
 
   async function onSubmit(e) {
     e.preventDefault();

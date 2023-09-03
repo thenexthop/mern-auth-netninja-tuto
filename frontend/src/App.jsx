@@ -1,4 +1,7 @@
-import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import { 
+  createBrowserRouter,
+  RouterProvider 
+} from 'react-router-dom';
 
 // Global Context providers
 import { WorkoutsContextProvider } from './context/WorkoutsContext';
@@ -6,6 +9,9 @@ import { AuthContextProvider } from './context/AuthContext';
 
 // Layouts
 import Main from './layouts/Main';
+
+// helpers
+import ProtectedRoutes from './helpers/ProtectedRoutes';
 
 // Pages
 //import HomeV1 from './pages/HomeV1/HomeV1';
@@ -19,13 +25,15 @@ const router = createBrowserRouter([
     element: <Main />,
     children: [
       {
-        index: true,
-        element: <Home />,
+        path: "/",
+        element: <ProtectedRoutes />,
+        children: [
+          {
+            index: true,
+            element:<Home />,
+          },
+        ]
       },
-      // {
-      //   index: true,
-      //   element: <HomeV1 />,
-      // },
       {
         path: "login",
         element: <Login />,
@@ -34,6 +42,11 @@ const router = createBrowserRouter([
         path: "register",
         element: <Register />,
       },
+      
+      // {
+      //   index: true,
+      //   element: <HomeV1 />,
+      // },
     ]
   },  
 ]);
