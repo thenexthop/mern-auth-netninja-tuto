@@ -149,3 +149,32 @@ div.error {
 .form h3 {
   margin: 1.25rem 0;
 }
+
+nav {
+  display: flex;
+  align-items: center;
+}
+
+nav a {
+  margin-left: 10px;
+}
+
+nav button {
+  background: #ffffff;
+  border: 2px solid var(--primary);
+  border-radius: .25rem;
+  color: var(--primary);
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 1em;
+  padding: .3rem .6rem;
+}
+
+form.login,
+form.register {
+  background: #ffffff;
+  border-radius: .5rem;
+  margin: 5rem auto;
+  max-width: 400px;  
+  padding: 1.2rem;
+}

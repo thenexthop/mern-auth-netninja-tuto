@@ -25,7 +25,7 @@ export const login = async (req, res) => {
     return res.status(200).json({
       status: 'success',
       data: {
-          user,
+          email: user.email,
           token
       }
     });
@@ -34,7 +34,7 @@ export const login = async (req, res) => {
     console.error(error.message);
     return res.status(401).json({
       status: 'fail',
-      error: error.message 
+      errormsg: error.message 
     });
   }  
 }
@@ -60,15 +60,15 @@ export const register = async (req, res) => {
     return res.status(201).json({
       status: 'success',
       data: {
-          user: newUser,
-          token
+        email: newUser.email,
+        token
       }
-  });
+    });
 
   } catch (error) {
     return res.status(422).json({
       status: 'fail',
-      error: error.message 
+      errormsg: error.message 
     });
   }
 }

@@ -1,7 +1,8 @@
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 
-// Global Context provider
+// Global Context providers
 import { WorkoutsContextProvider } from './context/WorkoutsContext';
+import { AuthContextProvider } from './context/AuthContext';
 
 // Layouts
 import Main from './layouts/Main';
@@ -9,6 +10,8 @@ import Main from './layouts/Main';
 // Pages
 //import HomeV1 from './pages/HomeV1/HomeV1';
 import Home from './pages/Home';
+import Login from './pages/Login';
+import Register from './pages/Register'
 
 const router = createBrowserRouter([
   {
@@ -23,6 +26,14 @@ const router = createBrowserRouter([
       //   index: true,
       //   element: <HomeV1 />,
       // },
+      {
+        path: "login",
+        element: <Login />,
+      },
+      {
+        path: "register",
+        element: <Register />,
+      },
     ]
   },  
 ]);
@@ -30,9 +41,11 @@ const router = createBrowserRouter([
 function App() {  
   return (
     <div className="app">
-      <WorkoutsContextProvider>
-        <RouterProvider router={router} />
-      </WorkoutsContextProvider>
+      <AuthContextProvider>
+        <WorkoutsContextProvider>
+          <RouterProvider router={router} />
+        </WorkoutsContextProvider>
+      </AuthContextProvider> 
     </div>
   )
 }
